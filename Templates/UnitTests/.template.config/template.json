@@ -1,0 +1,31 @@
+{
+	"$schema": "http://json.schemastore.org/template",
+	"author": "Petit Panda Rouge",
+	"classifications": [ "Test", "xunit" ],
+	"name": "Unit Tests Project",
+	"identity": "Panda.UnitTests",
+	"shortName": "ut",
+	"preferNameDirectory": true,
+	"tags": {
+		"language": "C#",
+		"type": "project"
+	},
+	"sourceName": "ProjectName",
+	"symbols": {
+		"targetFramework": {
+			"type": "parameter",
+			"description": "Specifies the target framework of the project.",
+			"datatype": "choice",
+			"isRequired": "true",
+			"replaces": "targetFramework",
+			"choices": [
+				{
+					"choice": "net6.0"
+				},
+				{
+					"choice": "net7.0"
+				}
+			]
+		}
+	}
+}

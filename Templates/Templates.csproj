@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup Label="PackageGlobal">
+    <PackageType>Template</PackageType>
+    <TargetFramework>net7.0</TargetFramework>	  
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+    <NoWarn>$(NoWarn);NU5110;NU5111</NoWarn>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <Configurations>Debug;Release;Test</Configurations>
+  </PropertyGroup>
+    
+  <PropertyGroup Label="PackageRelease" Condition="'$(Configuration)' == 'Release'">
+    <PackageVersion>1.6.0</PackageVersion>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="PackageDebug" Condition="'$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Test'">
+    <!-- Do not modify this version. -->
+    <PackageVersion>0.0.0</PackageVersion>
+    <ProjectTestDir>D:\Temp\</ProjectTestDir>
+    <ProjectTestName>AAA</ProjectTestName>
+    <RepositoryUrl>C:\Temp\NuGet</RepositoryUrl>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="PackageGlobal">
+    <PackageId>Pandatheque.Templates</PackageId>
+    <PackageName>$(PackageId).$(PackageVersion).nupkg</PackageName>
+    <Title>Templates</Title>
+    <Authors>Petit Panda Rouge</Authors>
+    <Description>Modèles de projet pour les applications .Net du pôle CG13.</Description>
+    <PackageTags>dotnet-new;templates;</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/petitpandarouge/DotnetTemplates</PackageProjectUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Label="PackageDeployAndInstall">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <InstallTemplatesOnDeploy>true</InstallTemplatesOnDeploy>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="UnitTests\**\*" Exclude="UnitTests\**\bin\**;UnitTests\**\obj\**;UnitTests\**\.vs\**" />
+    <Compile Remove="**\*" />
+    <None Remove="**\bin\**;**\obj\**;*.vspscc" />
+  </ItemGroup>
+    
+  <!-- Package deployment task executed after pack. -->
+  <Target Name="DeployPackage" AfterTargets="Pack" Condition="'$(Configuration)' == 'Debug'">
+    <Message Text="Deploying package $(PackageName) in $(RepositoryUrl)..." Importance="high" />
+    <Copy SourceFiles="$(OutputPath)..\$(PackageName)" DestinationFolder="$(RepositoryUrl)" />
+    <Message Text="Package '$(RepositoryUrl)$(PackageName)' successfully deployed." Importance="high" />
+  </Target>
+     
+  <!-- Task used to install the packages after the deployment. -->
+  <Target Name="InstallTemplates" AfterTargets="DeployPackage" Condition="'$(Configuration)' == 'Debug' And '$(InstallTemplatesOnDeploy)' == 'True'">
+    <Message Text="Installing $(PackageVersion) templates version..." Importance="high" />
+    <Exec Command="dotnet new install $(PackageId)::$(PackageVersion) --nuget-source $(RepositoryUrl) --force" />
+    <Message Text="Templates version $(PackageVersion) successfully installed." Importance="high" />
+  </Target>
+  
+  <!-- Task used to create the test project in debug mode after the installation task. -->
+  <Target Name="CreateTestProjects" AfterTargets="InstallTemplates" Condition="'$(Configuration)' == 'Debug' And '$(InstallTemplatesOnDeploy)' == 'True'">
+    <!-- AspMvc-RestApi -->
+    <Message Text="Deleting $(ProjectTestDir)UnitTests directory..." Importance="high" Condition="Exists('$(ProjectTestDir)UnitTests')" />
+    <RemoveDir Directories="$(ProjectTestDir)UnitTests" Condition="Exists('$(ProjectTestDir)UnitTests')">
+      <Output TaskParameter="RemovedDirectories" ItemName="RemovedServiceDirectory" />
+    </RemoveDir>
+    <Message Text="@(RemovedServiceDirectory) directory successfully deleted." Importance="high" Condition="@(RemovedServiceDirectory) != ''" />
+    <Message Text="Creating $(ProjectTestDir)UnitTests test project..." Importance="high" />
+    <Exec Command="dotnet new ut -n $(ProjectTestName) -o $(ProjectTestDir)UnitTests -tf net6.0" />
+    <Message Text="Opening $(ProjectTestDir) directory in Explorer..." Importance="high" />
+    <Exec Command="start explorer $(ProjectTestDir)" />
+    <Message Text="$(ProjectTestDir) directory successfully opened in Explorer." Importance="high" />
+  </Target>
+
+</Project>
