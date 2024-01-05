@@ -69,7 +69,7 @@
     </RemoveDir>
     <Message Text="@(RemovedServiceDirectory) directory successfully deleted." Importance="high" Condition="@(RemovedServiceDirectory) != ''" />
     <Message Text="Creating $(ProjectTestDir)UnitTests test project..." Importance="high" />
-    <Exec Command="dotnet new ut -n $(ProjectTestName) -o $(ProjectTestDir)UnitTests -tf net6.0" />
+    <Exec Command="dotnet new p-unit -n $(ProjectTestName) -o $(ProjectTestDir)UnitTests -f net6.0" />
     <Message Text="Opening $(ProjectTestDir) directory in Explorer..." Importance="high" />
     <Exec Command="start explorer $(ProjectTestDir)" />
     <Message Text="$(ProjectTestDir) directory successfully opened in Explorer." Importance="high" />

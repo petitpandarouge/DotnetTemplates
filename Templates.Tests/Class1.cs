@@ -15,12 +15,11 @@ namespace Templates.Tests
 
 			ILoggerFactory? factory = serviceProvider.GetService<ILoggerFactory>();
 
-			ILogger<MyTestClass> logger = factory.CreateLogger<MyTestClass>();
+			ILogger<MyTestClass> logger = factory!.CreateLogger<MyTestClass>();
 
-			TemplateVerifierOptions options = new(templateName: "ut")
+			TemplateVerifierOptions options = new(templateName: "p-unit")
 			{
-				TemplateSpecificArgs = new[] { "-tf", "net6.0" },
-				VerifyCommandOutput = false,
+				TemplateSpecificArgs = new[] { "-f", "net6.0" }
 			};
 
 			VerificationEngine engine = new(logger);
