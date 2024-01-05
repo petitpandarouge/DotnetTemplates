@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentAssertions;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.TemplateEngine.Authoring.TemplateVerifier;
 
@@ -19,11 +20,15 @@ namespace Templates.Tests
 
 			TemplateVerifierOptions options = new(templateName: "p-unit")
 			{
-				TemplateSpecificArgs = new[] { "-f", "net6.0" }
+				TemplatePath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\Templates\UnitTests\"),
+				TemplateSpecificArgs = new[] { "-f", "net6.0" },
 			};
 
 			VerificationEngine engine = new(logger);
-			await engine.Execute(options).ConfigureAwait(false);
+			Func<Task> action = async () => await engine.Execute(options).ConfigureAwait(false);
+
+			_ = await action.Should().NotThrowAsync();
+
 		}
 	}
 }

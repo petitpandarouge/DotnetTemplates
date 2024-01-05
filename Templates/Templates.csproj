@@ -29,7 +29,7 @@
     <PackageName>$(PackageId).$(PackageVersion).nupkg</PackageName>
     <Title>Templates</Title>
     <Authors>Petit Panda Rouge</Authors>
-    <Description>Modèles de projet pour les applications .Net du pôle CG13.</Description>
+    <Description>Buch of templates based on the dotnet new command.</Description>
     <PackageTags>dotnet-new;templates;</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/petitpandarouge/DotnetTemplates</PackageProjectUrl>
