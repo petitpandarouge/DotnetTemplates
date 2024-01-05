@@ -1,8 +1,8 @@
 {
 	"$schema": "http://json.schemastore.org/template",
 	"author": "Petit Panda Rouge",
-	"classifications": [ "Test", "xunit" ],
-	"name": "Pandatheque - Unit Tests Project",
+	"classifications": [ "Test", "xUnit" ],
+	"name": "Pandatheque - Unit Test Project",
 	"identity": "Pandatheque.UnitTests.Project",
 	"shortName": "p-unit",
 	"preferNameDirectory": true,

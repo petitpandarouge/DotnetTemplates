@@ -38,6 +38,7 @@
   <PropertyGroup Label="PackageDeployAndInstall">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <InstallTemplatesOnDeploy>true</InstallTemplatesOnDeploy>
+    <CreateTemplatesOnInstall>false</CreateTemplatesOnInstall>
   </PropertyGroup>
 
   <ItemGroup>
@@ -61,7 +62,7 @@
   </Target>
   
   <!-- Task used to create the test project in debug mode after the installation task. -->
-  <Target Name="CreateTestProjects" AfterTargets="InstallTemplates" Condition="'$(Configuration)' == 'Debug' And '$(InstallTemplatesOnDeploy)' == 'True'">
+  <Target Name="CreateTestProjects" AfterTargets="InstallTemplates" Condition="'$(Configuration)' == 'Debug' And '$(CreateTemplatesOnInstall)' == 'True'">
     <!-- AspMvc-RestApi -->
     <Message Text="Deleting $(ProjectTestDir)UnitTests directory..." Importance="high" Condition="Exists('$(ProjectTestDir)UnitTests')" />
     <RemoveDir Directories="$(ProjectTestDir)UnitTests" Condition="Exists('$(ProjectTestDir)UnitTests')">
