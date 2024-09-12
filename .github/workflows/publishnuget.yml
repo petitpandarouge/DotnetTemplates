@@ -20,7 +20,9 @@ jobs:
         dotnet-version: 7.0.x
         
     - name: Publish NuGet on version changed
-      uses: rohith/publish-nuget@v2.2.0
+      uses: brandedoutcast/publish-nuget@v2.5.5
       with:
         PROJECT_FILE_PATH: Templates/Templates.csproj
+        PACKAGE_NAME: Pandatheque.Templates
+        VERSION_REGEX: ^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
