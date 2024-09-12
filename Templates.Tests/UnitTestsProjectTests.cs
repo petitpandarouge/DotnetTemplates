@@ -5,7 +5,7 @@ using Microsoft.TemplateEngine.Authoring.TemplateVerifier;
 
 namespace Templates.Tests
 {
-    public class UnitTestsProject
+    public class UnitTestsProjectTests
     {
         [Theory]
         [InlineData("net8.0")]
@@ -19,7 +19,7 @@ namespace Templates.Tests
 
             ILoggerFactory? factory = serviceProvider.GetService<ILoggerFactory>();
 
-            ILogger<UnitTestsProject> logger = factory!.CreateLogger<UnitTestsProject>();
+            ILogger<UnitTestsProjectTests> logger = factory!.CreateLogger<UnitTestsProjectTests>();
 
             TemplateVerifierOptions options = new(templateName: "p-unit")
             {
