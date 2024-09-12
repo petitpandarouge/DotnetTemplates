@@ -3,7 +3,5 @@
 **/bin/
 **/obj/
 
-# Ignore everything in the template directories...
-templates/AspMvc-RestApi/*
-# ... except the template.config directory.
-!templates/AspMvc-RestApi/.template.config
+# Ignore the golden tests received.
+*.received
