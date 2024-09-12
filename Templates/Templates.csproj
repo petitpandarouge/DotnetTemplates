@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   
   <PropertyGroup Label="PackageGlobal">
     <PackageType>Template</PackageType>  
@@ -41,7 +41,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="UnitTests\**\*" Exclude="UnitTests\**\bin\**;UnitTests\**\obj\**;UnitTests\**\.vs\**" />
+    <Content Include="UnitTestsProject\**\*" Exclude="UnitTestsProject\**\bin\**;UnitTestsProject\**\obj\**;UnitTestsProject\**\.vs\**" />
+    <Content Include="Fact\**\*" Exclude="Fact\**\bin\**;Fact\**\obj\**;Fact\**\.vs\**" />
     <Compile Remove="**\*" />
     <None Remove="**\bin\**;**\obj\**;*.vspscc" />
   </ItemGroup>
