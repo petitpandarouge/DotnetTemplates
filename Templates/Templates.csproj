@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   
   <PropertyGroup Label="PackageGlobal">
-    <PackageType>Template</PackageType>
-    <TargetFramework>net7.0</TargetFramework>	  
+    <PackageType>Template</PackageType>  
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
@@ -13,7 +12,7 @@
   </PropertyGroup>
     
   <PropertyGroup Label="PackageRelease" Condition="'$(Configuration)' == 'Release'">
-    <PackageVersion>1.6.0</PackageVersion>
+    <PackageVersion>0.0.1</PackageVersion>
   </PropertyGroup>
   
   <PropertyGroup Label="PackageDebug" Condition="'$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Test'">
