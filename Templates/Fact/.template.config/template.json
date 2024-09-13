@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Petit Panda Rouge",
+  "classifications": [ "Test", "xUnit" ],
+  "name": "Pandatheque - Fact",
+  "identity": "Pandatheque.Fact",
+  "shortName": "p-fact",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "sourceName": "FactClassName",
+  "symbols": {
+    "DefaultNamespace": {
+      "type": "bind",
+      "binding": "msbuild:RootNamespace",
+      "replaces": "FactNamespaceName",
+      "defaultValue": "Namespace.undefined"
+    },
+    "Given": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "_parameters_",
+      "forms": {
+        "global": [ "methodNameFormat" ]
+      }
+    },
+    "When": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "_conditions_",
+      "forms": {
+        "global": [ "methodNameFormat" ]
+      }
+    },
+    "Should": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "_result_",
+      "forms": {
+        "global": [ "methodNameFormat" ]
+      }
+    }
+  },
+  "forms": {
+    "spaceToUnderscore": {
+      "identifier": "replace",
+      "pattern": " ",
+      "replacement": "_"
+    },
+    "lc": {
+      "identifier": "lowerCase"
+    },
+    "methodNameFormat": {
+      "identifier": "chain",
+      "steps": [ "spaceToUnderscore", "lc" ]
+    }
+  },
+  "constraints": {
+    "csharp-only": {
+      "type": "project-capability",
+      "args": "CSharp + TestContainer" // only allowed in C# test project
+    }
+  }
+}
