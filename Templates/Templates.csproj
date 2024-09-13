@@ -41,8 +41,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="UnitTestsProject\**\*" Exclude="UnitTestsProject\**\bin\**;UnitTestsProject\**\obj\**;UnitTestsProject\**\.vs\**" />
+    <Content Include="Editorconfig\**\*" Exclude="Editorconfig\**\bin\**;Editorconfig\**\obj\**;Editorconfig\**\.vs\**" />
     <Content Include="Fact\**\*" Exclude="Fact\**\bin\**;Fact\**\obj\**;Fact\**\.vs\**" />
+    <Content Include="UnitTestsProject\**\*" Exclude="UnitTestsProject\**\bin\**;UnitTestsProject\**\obj\**;UnitTestsProject\**\.vs\**" />
     <Compile Remove="**\*" />
     <None Remove="**\bin\**;**\obj\**;*.vspscc" />
   </ItemGroup>
